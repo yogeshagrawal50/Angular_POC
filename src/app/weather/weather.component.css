@@ -1,0 +1,36 @@
+.container-fluid-mod{
+    background-color: TAN;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.weather-box{
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.header{
+    padding: 1.2rem;
+    border-bottom: 3px solid #D4D4D4;
+}
+.info-box{
+    width: 20%;
+}
+.info-box img{
+    width: 50%;
+    vertical-align: middle;
+    display: block;
+    margin: 1em auto;
+    text-align:center;
+}
+.tem{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.info-box:nth-child(even){
+    background-color: #ded8d8;
+}

@@ -1,0 +1,170 @@
+<div class="container-fluid">
+    <button class="btn btn-primary" (click)="alertBox()">Click Me from product</button>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">LIFE CYCLE HOOKS</div>
+                <div class="card-body">
+                    <input type="text" #input />
+                    <button (click)="addInputValue(input)">Submit</button>
+                    <button class="btn btn-danger" (click)="onDestroy()">Destroy</button>
+                    <app-life-cycle [value]="inputText" *ngIf="destroy">
+                        <h1>Hi ! I am coming parent component</h1>
+                    </app-life-cycle>
+
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="card ">
+                <div class="card-header bg-info">
+                    <div class="row">
+                        <div class="col-7">
+                            <h3>SHOPPING LIST</h3>
+                        </div>
+                        <div class="col-5">
+                            <select name="" id="" class="form-control" [(ngModel)]="sortOption">
+                                <option value="asc">Sorty by Name (A to Z)</option>
+                                <option value="desc">Sorty by Name (Z to A)</option>
+                                <option value="lth">Sorty by Price (low to high)</option>
+                                <option value="htl">Sorty by Price (high to low)</option>
+                            </select>
+                            <div>{{sortOption}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 border border-primary pt-3 pb-3" *ngFor="let product of products | sort:sortOption">
+                            <div class="row mb-2">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img [src]="product.product_image" alt="" class="img-height">
+                                </div> 
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                   {{product.product_name}}
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6">{{product.product_weight}}</div>
+                                <div class="col-6 text-end">Rs {{product.product_price}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">Copyright</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <div *ngIf="productList.length < 1">You have no items in the basket</div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of productList">
+                                <td appBgColor>{{item.product_name | shorthand}}</td>
+                                <td>{{item.product_price}}</td>
+                                <td>
+                                    <button class="btn btn-info" (click)="remove(item)"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-dark text-center text-white">Total Amount: Rs. {{total()}}</div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">BINDINGS</div>
+                <div class="card-body">
+                    <div class="">
+                        <div>Property Binding</div>
+                        <input type="text" [value]="name">
+                    </div>
+                    <div>
+                        <div>Event Binding</div>
+                        <button class="btn btn-danger" (click)="onClick()">Click me</button>
+                        <input type="text" (input)="getInputValue($event)">
+                    </div>
+                    <div>
+                        <div>Two way Binding</div>
+                        <input type="text" [(ngModel)]="inputValue">
+                        <div>{{inputValue}}</div>
+                    </div>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">DIRECTIVES</div>
+                <div class="card-body">
+                    <div>ngIF============================</div>
+                    <div *ngIf="product.product_name == 'Ashirwad aata'">Instock</div>
+                    <ng-template>
+                        <div>Out Of Stock</div>
+                    </ng-template>
+                    <div>ngFor ================================</div>
+                    <div *ngFor="let color of colors">{{color}}</div>
+                    <div>ngSwitch=================================</div>
+                    <input type="text" [(ngModel)]="num">
+                    <div [ngSwitch]="num">
+                        <div *ngSwitchCase="'1'">One</div>
+                        <div *ngSwitchCase="'2'">Two</div>
+                        <div *ngSwitchCase="'3'">Three</div>
+                        <div *ngSwitchCase="'4'">Four</div>
+                        <div *ngSwitchDefault>This is the default case</div>
+                    </div>
+                    <div>ngClass</div>
+                    <div [ngClass]="'text-danger fs-1'">String</div>
+                    <div [ngClass]="['text-danger', 'fs-2']">Number</div>
+                    <div [ngClass]="{'text-danger' : 'toCheck', 'fs-3':false}">Viji</div>
+                    <div [ngClass]="value > 10 ? 'text-danger' : 'fs-1'">Viji</div>
+                    <div>ngStyle</div>
+                    <input type="text" [(ngModel)]='userColor'>
+                    <div [ngStyle]="{'background':userColor}">The color is changing</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-12">
+            <input type="text" [(ngModel)]="searchValue">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div *ngFor="let product of products | filter:searchValue">
+                <div>{{product.product_name}}</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <input type="text" name="" id="" #add>
+            <button class="btn btn-success" (click)="addProduct(add)">ADD</button>
+        </div>
+    </div>
+    <div>{{names}}</div>
+</div>

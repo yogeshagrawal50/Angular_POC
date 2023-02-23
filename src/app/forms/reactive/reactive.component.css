@@ -1,0 +1,21 @@
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+
+div > span{
+    color:red;
+    font-size: 10px;;
+}
+
+.my-form.VALID{
+    -webkit-box-shadow: -1px -2px 44px 0px rgba(66,214,47,1);
+-moz-box-shadow: -1px -2px 44px 0px rgba(66,214,47,1);
+box-shadow: -1px -2px 44px 0px rgba(66,214,47,1);
+}
+
+.my-form.INVALID{
+    -webkit-box-shadow: -1px -2px 44px 0px rgba(240,29,85,1);
+-moz-box-shadow: -1px -2px 44px 0px rgba(240,29,85,1);
+box-shadow: -1px -2px 44px 0px rgba(240,29,85,1);
+
+}
